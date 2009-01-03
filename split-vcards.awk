@@ -9,7 +9,7 @@
 # Licence:
 #	AGPL v3
 #
-# run as: awk -f make-single.awk vcardfile.vcf
+# run as: awk -f split-vcards.awk vcardfile.vcf
 
 BEGIN {
 	FS = ";"
@@ -60,6 +60,7 @@ BEGIN {
 
 	sub(/^ */, "", contactis)
 	sub(/ *$/, "", contactis)
+	gsub(//, "", contact)
 
 	if ( length(contactis) > 0 ) {
 		print "Found " contactis ", writing file"
