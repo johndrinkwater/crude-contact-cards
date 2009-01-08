@@ -1,16 +1,27 @@
-# vCard photo parsing script
-#
-# takes a vCard contact file and exports the photo into a vcard.extension file
-#
-# Author: 
-#	John Drinkwater, john@nextraweb.com
-# Contains code from http://www.turtle.dds.nl/b64dec.awk,
-#  copyright Peter van Eerten, licenced under the GPL
-#
-# Licence:
-#	AGPL v3
+#	vCard photo parsing script
+#	takes a vCard contact file and exports the photo into a vcard.extension file
+#	
+#	Copyright (C) 2009 John Drinkwater
+#	Licence: AGPL v3
+#	
+#	This program is free software: you can redistribute it and/or modify
+#	it under the terms of the GNU Affero General Public Licence as
+#	published by the Free Software Foundation, either version 3 of the
+#	Licence, or (at your option) any later version.
+#	
+#	This program is distributed in the hope that it will be useful,
+#	but WITHOUT ANY WARRANTY; without even the implied warranty of
+#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#	GNU Affero General Public Licence for more details.
+#	
+#	You should have received a copy of the GNU Affero General Public Licence
+#	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#	
+#	Contains code from http://www.turtle.dds.nl/b64dec.awk,
+#	Copyright (C) Peter van Eerten, licenced under the GPL
 #
 # run as: awk -f split-out-photo.awk vcardfile.vcf
+
 
 # TODOs
 # needs to listen to PHOTO line, i.e., encoding and filetype
@@ -19,24 +30,21 @@
 
 function decodebase64(stuff) {
 
-BASE64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+B64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 
 result = ""
 while (length(stuff) > 0){
-	# Now find numerical position in BASE64 string
-	byte1 = index(BASE64, substr(stuff, 1, 1)) - 1
+	byte1 = index(B64, substr(stuff, 1, 1)) - 1
 	if (byte1 < 0) byte1 = 0
-	byte2 = index(BASE64, substr(stuff, 2, 1)) - 1
+	byte2 = index(B64, substr(stuff, 2, 1)) - 1
 	if (byte2 < 0) byte2 = 0
-	byte3 = index(BASE64, substr(stuff, 3, 1)) - 1
+	byte3 = index(B64, substr(stuff, 3, 1)) - 1
 	if (byte3 < 0) byte3 = 0
-	byte4 = index(BASE64, substr(stuff, 4, 1)) - 1
+	byte4 = index(B64, substr(stuff, 4, 1)) - 1
 	if (byte4 < 0) byte4 = 0
-	# Reconstruct ASCII string
 	result = result sprintf( "%c", lshift(and(byte1, 63), 2) + rshift(and(byte2, 48), 4) )
 	result = result sprintf( "%c", lshift(and(byte2, 15), 4) + rshift(and(byte3, 60), 2) )
 	result = result sprintf( "%c", lshift(and(byte3, 3), 6) + byte4 )
-	# Decrease incoming string with 4
 	stuff = substr(stuff, 5)
 }
 return result;

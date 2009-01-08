@@ -1,13 +1,22 @@
-# vCard parsing script
-#
-# takes a compound vCard contact file and splits it into little files
-# named after the contact name
-#
-# Author: 
-#	John Drinkwater, john@nextraweb.com
-#
-# Licence:
-#	AGPL v3
+#	Compound vCard parsing script
+#	takes a compound vCard contact file and splits it into little files
+#	named after the contact name of the card
+#	
+#	Copyright (C) 2009 John Drinkwater
+#	Licence: AGPL v3
+#	
+#	This program is free software: you can redistribute it and/or modify
+#	it under the terms of the GNU Affero General Public Licence as
+#	published by the Free Software Foundation, either version 3 of the
+#	Licence, or (at your option) any later version.
+#	
+#	This program is distributed in the hope that it will be useful,
+#	but WITHOUT ANY WARRANTY; without even the implied warranty of
+#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#	GNU Affero General Public Licence for more details.
+#	
+#	You should have received a copy of the GNU Affero General Public Licence
+#	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 # run as: awk -f split-vcards.awk vcardfile.vcf
 
