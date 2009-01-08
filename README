@@ -1,0 +1,12 @@
+vCard AWK parsing scripts
+
+2009 John Drinkwater
+http://johndrinkwater.name/
+Licence: AGPL v3
+
+These scripts are mostly written for myself, and as such, shouldn’t be
+production worthy. But hell, if you want to look and change and share,
+be my guest.
+
+Checkout the code with
+git clone git://github.com/johndrinkwater/crude-contact-cards.git
